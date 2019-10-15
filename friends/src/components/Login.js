@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Login = (props) => {
+const Login = ({ history }) => {
     const [creds, setCreds] = useState({username:"", password:""});
     const handleChange = event => {
 
@@ -14,6 +14,7 @@ const Login = (props) => {
             .then(res => {
                 console.log(res);
                 localStorage.setItem('token', res.data.payload)
+                history.push("/friends");
             })
             .catch(err => console.group(err.response));
     };

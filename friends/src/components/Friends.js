@@ -12,6 +12,7 @@ const Friends = (props) => {
             })
             .catch(err => console.log(err.response));
         };
+
     useEffect(() => {
         getFriends();
         }, []);
@@ -21,20 +22,22 @@ const Friends = (props) => {
         .then(res => setFriendsList(res.data))
         .catch(err => console.log(err.response));
     };
+
     const deleteFriend = id => {
         // console.log(id);
         axiosAuth().delete(`http://localhost:5000/api/friends/${id}`)
         .then(res => setFriendsList(res.data))
             .catch(err => console.log(err.response));
     };
+
     return (
         <div>
             <h2>Friends</h2>
             <FriendsList submitFriend={addFriend}/>
             {friendsList.map(friend => {
-                return <Card key={friend.id}
-                friend={friend}
-                deleteFriend={deleteFriend}/>;
+            return <Card key={friend.id}
+                        friend={friend}
+                        deleteFriend={deleteFriend}/>;
             })}
         </div>
     );

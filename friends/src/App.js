@@ -14,6 +14,7 @@ const PrivateRoute = ({component: Component, ...rest}) => {
     }
   }} />;
 };
+
 const protectRoute = Component => props => {
   if (localStorage.getItem('token')) {
     return <Component {...props} />;
